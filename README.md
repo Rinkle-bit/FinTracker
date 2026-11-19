@@ -273,6 +273,6 @@ This project is developed for educational and academic purposes. You may modify 
 **Domain:** Personal Finance Management  
 **Technology:** MERN Stack (MongoDB, Express.js, React.js, Node.js)
 
-**Developed By:** Rinkle
-**Contact:** rinklesh.in@gmail.com
-**Linkedin:** linkedin.com/in/rinkle-sharma-in/
+**Developed By:** Rinkle    
+**Contact:** rinklesh.in@gmail.com    
+**Linkedin:** linkedin.com/in/rinkle-sharma-in/   
