@@ -1,112 +1,278 @@
-# FinTrack — Smart Personal Finance Operating System
+# FinTracker - Personal Finance Management System
 
-FinTrack is an intelligent personal-finance platform built with **React 18, Vite, Recharts, Express, JWT, and Supabase (PostgreSQL)** with seamless zero-config fallback for local development.
+**FinTracker** is a full-stack personal finance management application built using the MERN stack. It helps users manage their financial activities by tracking income, expenses, budgets, savings goals, and transactions through an interactive dashboard.
 
-Unlike traditional generic trackers that merely show where money was spent in the past, FinTrack functions as a **proactive financial co-pilot** that helps users make confident decisions before spending.
+The application provides visual financial analytics, transaction management, budget planning, and expense insights to help users understand their spending habits and make smarter financial decisions.
 
----
+## Key Features
 
-## 🚀 What Makes FinTrack Different? (Key Innovations)
+### 1. Dashboard
+- Overview of total income and expenses.
+- Display of current balance.
+- Financial summary cards.
+- Interactive charts and visual statistics.
+- Recent transaction history.
 
-### 1. ✦ Predictive "Safe-to-Spend" Daily Gauge & Burn Rate
-* **Dynamic Daily Allowance:** Calculates exactly how much discretionary money you can safely spend today based on your income, committed recurring bills, and savings goal targets:
-  $$\text{Daily Safe Spend} = \frac{\text{Discretionary Pool} - \text{Discretionary Spent}}{\text{Days Left in Month}}$$
-* **Visual Pace Arc:** Instant visual feedback (Healthy, Warning, or Overdrawn) so you know your financial runway each morning.
+### 2. Transaction Management
+- Add income and expense transactions.
+- Edit and delete transactions.
+- Search and filter transactions.
+- Categorize financial activities.
+- Export transaction data to CSV.
 
-### 2. ✦ Natural Language Smart Quick-Add Bar
-* Type everyday sentences like:
-  * *"Dinner with team 1450"* $\rightarrow$ Auto-extracts Title: "Dinner with team", Amount: ₹1,450, Category: "Food", Type: "Expense", Date: Today.
-  * *"Salary credited 65000"* $\rightarrow$ Auto-extracts Category: "Salary", Type: "Income".
-  * *"Uber to airport 450 yesterday"* $\rightarrow$ Auto-detects yesterday's date.
-* Live chip previews and 1-key addition (`Enter ↵`) with zero tedious modal clicking.
+### 3. Budget Management
+- Create and manage monthly budgets.
+- Track spending against budget limits.
+- Monitor remaining budget.
+- View category-wise expenses.
 
-### 3. ✦ Bank SMS & Receipt Scanner
-* Paste debit alerts from banks (HDFC, SBI, ICICI, Axis, UPI) or text invoices.
-* Automatically parses merchant, transaction amount, date, and categorizes without manual typing.
+### 4. Savings Goals
+- Create personal savings goals.
+- Set target amounts.
+- Track savings progress.
+- Monitor progress toward financial targets.
 
-### 4. ✦ 48-Hour "Anti-Impulse" Cooling Chamber
-* Behavioral economics feature designed to curb impulse shopping.
-* Locks desired items into a 48-hour cool-down period.
-* Calculates the **Opportunity Cost**:
-  * **Labor Hours:** Tells you how many hours of work the item actually costs based on your income.
-  * **Savings Impact:** Shows how much it delays your active milestones.
-* Tracks all money successfully saved when you resist an impulse purchase!
+### 5. Analytics and Reports
+- Income and expense visualization.
+- Spending pattern analysis.
+- Category-wise financial breakdown.
+- Monthly financial summaries.
 
-### 5. ✦ Day-by-Day Interactive Financial Calendar
-* Complete monthly ledger calendar mapping income arrivals and expense clusters by date.
+### 6. Additional Features
+- Calendar-based transaction view.
+- User profile and settings.
+- Login and registration interface.
+- Responsive user interface.
+- Recurring transaction interface.
 
-### 6. ✦ Cloud Backend (Supabase PostgreSQL) + Instant Local Demo
-* **Logged-in Users:** Transactions, budgets, goals, and recurring items sync to Supabase PostgreSQL via JWT authentication.
-* **Guest / Demo Mode:** Anyone can instantly explore the app with pre-seeded data using browser `localStorage` without setup.
+## Technology Stack
 
----
+| Technology | Purpose |
+|---|---|
+| React.js | Frontend development |
+| JavaScript | Application logic |
+| HTML5 | Page structure |
+| CSS3 | Styling and responsive design |
+| Node.js | Backend runtime |
+| Express.js | REST API development |
+| MongoDB | Database |
+| Mongoose | Database modeling |
+| JWT | Authentication |
+| Recharts | Data visualization |
 
-## Tech Stack
+## Project Architecture
 
-- **Frontend:** React 18, Vite, Recharts, Lucide Icons, Modern CSS Design System (Dark & Light themes)
-- **Backend:** Node.js, Express, `@supabase/supabase-js`, JWT, bcryptjs
-- **Database:** Supabase (PostgreSQL with Row Level Security & Indexes)
+The project follows a frontend-backend architecture.
 
----
+- **Frontend:** Handles user interaction, dashboard rendering, forms, and financial visualizations.
+- **Backend:** Provides REST API endpoints and business logic.
+- **Database:** MongoDB is intended to store user accounts and financial records.
+- **Authentication:** JWT-based authentication is included in the backend architecture.
 
-## ⚡ Connecting to Supabase (3 Simple Steps)
+## Project Structure
 
-### Step 1: Run the Database Schema
-1. Open your [Supabase Dashboard](https://supabase.com/dashboard).
-2. Create a new project (e.g. `fintrack`).
-3. In the left navigation, click **SQL Editor** $\rightarrow$ **New query**.
-4. Copy the entire contents of [`supabase_schema.sql`](./supabase_schema.sql) and click **Run**.
-   *(This creates the `users`, `transactions`, `budgets`, `goals`, `recurring`, and `impulses` tables with indexes and security policies).*
+```text
+FinTracker/
+│
+├── frontend/
+│   ├── public/
+│   └── src/
+│       ├── components/
+│       ├── pages/
+│       ├── assets/
+│       ├── App.jsx
+│       ├── main.jsx
+│       └── styles.css
+│
+├── backend/
+│   ├── src/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   ├── controllers/
+│   │   ├── middleware/
+│   │   └── server.js
+│   │
+│   └── package.json
+│
+└── README.md
+```
 
-### Step 2: Configure Backend Environment
-1. In your Supabase Dashboard, go to **Project Settings** $\rightarrow$ **API**.
-2. Copy your **Project URL** and **service_role key** (or anon key).
-3. Open `FinTrack/backend/.env` and paste:
-   ```env
-   PORT=5000
-   CLIENT_URL=http://localhost:5173
-   JWT_SECRET=super_secure_jwt_secret_key
+## Installation and Setup
 
-   SUPABASE_URL=https://your-project-id.supabase.co
-   SUPABASE_KEY=your-supabase-service-role-or-anon-key
-   ```
+Follow these steps to run FinTracker locally.
 
-### Step 3: Run FinTrack
-In terminal 1 (Backend):
+### Prerequisites
+
+Install the following tools:
+
+- Node.js
+- npm
+- MongoDB
+- Git
+- Visual Studio Code
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/YOUR-USERNAME/FinTracker.git
+```
+
+Navigate to the project directory:
+
+```bash
+cd FinTracker
+```
+
+### 2. Backend Setup
+
+Navigate to the backend folder:
+
 ```bash
 cd backend
+```
+
+Install dependencies:
+
+```bash
 npm install
+```
+
+Create a `.env` file inside the backend directory.
+
+Add the following environment variables:
+
+```env
+PORT=5000
+MONGO_URI=mongodb://127.0.0.1:27017/fintracker
+JWT_SECRET=your_secret_key
+CLIENT_URL=http://localhost:5173
+```
+
+Start the backend server:
+
+```bash
 npm run dev
 ```
-Terminal will print:
-`Connected to Supabase PostgreSQL database.`
 
-In terminal 2 (Frontend):
+### 3. Frontend Setup
+
+Open another terminal and navigate to the frontend directory:
+
 ```bash
 cd frontend
+```
+
+Install dependencies:
+
+```bash
 npm install
+```
+
+Start the frontend development server:
+
+```bash
 npm run dev
 ```
-Open `http://localhost:5173` in your browser.
+
+Open the local development URL displayed in your terminal, usually:
+
+```text
+http://localhost:5173
+```
+
+## Environment Variables
+
+| Variable | Description |
+|---|---|
+| PORT | Backend server port |
+| MONGO_URI | MongoDB connection string |
+| JWT_SECRET | Secret key for JWT authentication |
+| CLIENT_URL | Frontend application URL |
+
+**Important:** Never upload your `.env` file or expose your database credentials and secret keys on GitHub.
+
+## Current Development Status
+
+The following table distinguishes the existing frontend functionality from backend integration work.
+
+| Feature | Status |
+|---|---|
+| Dashboard UI | Implemented |
+| Income and Expense UI | Implemented |
+| Transaction management interface | Implemented |
+| Budget interface | Implemented |
+| Savings goals interface | Implemented |
+| Analytics dashboard UI | Implemented |
+| Calendar and Reports UI | Implemented |
+| Login and Registration UI | Implemented |
+| Frontend local data storage | Implemented |
+| Backend API foundation | Created |
+| MongoDB connection | Requires verification |
+| Frontend and backend authentication integration | Pending |
+| Persistent transaction CRUD through MongoDB | Pending |
+| Backend-powered analytics | Pending |
+| Backend budget and savings integration | Pending |
+
+Note: The current frontend uses browser localStorage for financial data. The backend API foundation is separate and the complete frontend-to-backend integration is still under development. Features marked pending should not be considered fully operational.
+
+## Future Enhancements
+
+The following features are planned for future development:
+
+- AI-powered financial recommendations.
+- Smart expense prediction.
+- Automated monthly financial reports.
+- Email notifications and budget alerts.
+- Recurring transaction automation.
+- PDF report generation.
+- CSV transaction import.
+- Improved financial analytics.
+- Secure cloud-based data synchronization.
+
+## Security Considerations
+
+- Use environment variables for sensitive credentials.
+- Implement password hashing using bcrypt.
+- Protect private API routes with JWT authentication.
+- Validate user inputs on the backend.
+- Ensure users can access only their own financial records.
+
+## Learning Outcomes
+
+This project demonstrates practical knowledge of:
+
+- Full-stack web application development.
+- React component-based architecture.
+- RESTful API development.
+- Node.js and Express.js.
+- MongoDB database management.
+- User authentication concepts.
+- Financial data visualization.
+- Frontend and backend integration.
+
+## Contributing
+
+Contributions are welcome!
+
+1. Fork this repository.
+2. Create a new feature branch.
+3. Make your changes.
+4. Commit your changes.
+5. Push your branch.
+6. Submit a Pull Request.
+
+## License
+
+This project is developed for educational and academic purposes. You may modify and enhance it for learning and personal development.
 
 ---
 
-## API Endpoints
+**Developed as a Full Stack Development Project**
 
-- `POST /api/auth/register` — Register new user in Supabase
-- `POST /api/auth/login` — Authenticate user (returns JWT token)
-- `GET /api/transactions` — Fetch user transactions (filterable by `?month=YYYY-MM`)
-- `POST /api/transactions` — Add single transaction
-- `POST /api/transactions/bulk` — Bulk import transactions (e.g., CSV imports)
-- `DELETE /api/transactions/:id` — Delete transaction
-- `GET /api/budgets` — Fetch category budgets
-- `POST /api/budgets` — Upsert category budget limit
-- `DELETE /api/budgets/:category` — Delete category budget
-- `GET /api/goals` — Fetch savings goals
-- `POST /api/goals` — Create savings goal
-- `PATCH /api/goals/:id` — Update saved amount or goal target
-- `DELETE /api/goals/:id` — Delete savings goal
-- `GET /api/recurring` — Fetch recurring items
-- `POST /api/recurring` — Create recurring item
-- `DELETE /api/recurring/:id` — Delete recurring item
-- `GET /api/health` — System status and Supabase connection indicator
+**Project Name:** FinTracker  
+**Domain:** Personal Finance Management  
+**Technology:** MERN Stack (MongoDB, Express.js, React.js, Node.js)
+
+**Developed By:** Rinkle  
+**Contact:** rinklesh.in@gmail.com  
+**Linkedin:** linkedin.com/in/rinkle-sharma-in/  
